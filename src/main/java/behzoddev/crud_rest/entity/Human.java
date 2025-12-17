@@ -1,5 +1,6 @@
 package behzoddev.crud_rest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
