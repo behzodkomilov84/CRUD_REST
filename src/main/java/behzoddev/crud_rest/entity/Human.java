@@ -1,4 +1,4 @@
-package behzoddev.springbootexample.entity;
+package behzoddev.crud_rest.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,6 +12,12 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@NamedEntityGraph(
+        name = "humanWithCars",
+        attributeNodes = {
+                @NamedAttributeNode("cars")
+        }
+)
 public class Human {
 
     @Id

@@ -1,4 +1,4 @@
-package behzoddev.springbootexample.entity;
+package behzoddev.crud_rest.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
