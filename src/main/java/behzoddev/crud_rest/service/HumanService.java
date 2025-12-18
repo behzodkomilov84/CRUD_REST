@@ -16,29 +16,33 @@ public class HumanService {
 
     private final HumanRepository humanRepository;
 
-    public List<Human> getHumans(){
+    public List<Human> getHumans() {
         return humanRepository.findAll();
     }
 
-    public Optional<Human> getHuman(Long id){
+    public Optional<Human> getHuman(Long id) {
         Optional<Human> humanById = humanRepository.findById(id);
         return humanById;
     }
 
     @Transactional
-    public Human saveHuman(HumanPostDto humanPostDto){
+    public Human saveHuman(HumanPostDto humanPostDto) {
         Human human = Human.builder().name(humanPostDto.name()).age(humanPostDto.age()).build();
         return humanRepository.save(human);
     }
 
     @Transactional
-    public Human saveHuman(Human human){
+    public Human saveHuman(Human human) {
         return humanRepository.save(human);
     }
 
     @Transactional
-    public void remove(Long id){
+    public void remove(Long id) {
         humanRepository.deleteById(id);
     }
 
+    @Transactional
+    public void updateHumanAge(Long id, Integer age) {
+        humanRepository.updateHumanAge(id, age);
+    }
 }

@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/human")
+@RequestMapping("/humans")
 public class HumanController {
 
     private final HumanService humanService;
@@ -44,6 +44,12 @@ public class HumanController {
         humanService.saveHuman(human);
             return ResponseEntity.noContent().build();
         }
+    }
+
+    @PatchMapping
+    public ResponseEntity<Void> updateHumanAge(@RequestParam Long id, @RequestParam Integer age){
+        humanService.updateHumanAge(id, age);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
