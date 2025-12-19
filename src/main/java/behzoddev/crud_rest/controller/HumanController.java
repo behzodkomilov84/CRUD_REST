@@ -20,7 +20,8 @@ public class HumanController {
 
     @GetMapping
     public ResponseEntity<List<Human>> getHumans(){
-        return ResponseEntity.ok(humanService.getHumans());
+        List<Human> humans = humanService.getHumans();
+        return ResponseEntity.ok(humans);
     }
 
     @GetMapping("/{id}")

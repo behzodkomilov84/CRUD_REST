@@ -2,11 +2,14 @@ package behzoddev.crud_rest.service;
 
 import behzoddev.crud_rest.dao.HumanRepository;
 import behzoddev.crud_rest.dto.HumanPostDto;
+import behzoddev.crud_rest.entity.Car;
 import behzoddev.crud_rest.entity.Human;
+import behzoddev.crud_rest.mapper.HumanMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +18,8 @@ import java.util.Optional;
 public class HumanService {
 
     private final HumanRepository humanRepository;
+
+    private final HumanMapper humanMapper;
 
     public List<Human> getHumans() {
         return humanRepository.findAll();
@@ -27,7 +32,14 @@ public class HumanService {
 
     @Transactional
     public Human saveHuman(HumanPostDto humanPostDto) {
-        Human human = Human.builder().name(humanPostDto.name()).age(humanPostDto.age()).build();
+        Human human = humanMapper.map(humanPostDto);
+
+        if (human.getCars() != null) {
+            for (Car car : human.getCars()) {
+                car.setHuman(human); // ключевое: связываем обратно с родителем
+            }
+        }
+
         return humanRepository.save(human);
     }
 

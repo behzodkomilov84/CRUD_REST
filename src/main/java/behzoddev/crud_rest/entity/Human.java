@@ -3,7 +3,9 @@ package behzoddev.crud_rest.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,12 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@NamedEntityGraph(
-        name = "humanWithCars",
-        attributeNodes = {
-                @NamedAttributeNode("cars")
-        }
-)
+@ToString
+
 public class Human {
 
     @Id
@@ -29,6 +27,10 @@ public class Human {
 
     private Integer age;
 
-    @OneToMany(mappedBy = "human")
+//    @BatchSize(size = 50)
+    @OneToMany(mappedBy = "human", cascade = CascadeType.PERSIST)
+    @ToString.Exclude
     private List<Car> cars;
+
+
 }

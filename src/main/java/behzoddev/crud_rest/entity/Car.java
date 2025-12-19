@@ -1,5 +1,6 @@
 package behzoddev.crud_rest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,6 +11,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
+@ToString
 public class Car {
 
     @Id
@@ -21,6 +23,7 @@ public class Car {
     private Long year;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Human human;
 }
 
