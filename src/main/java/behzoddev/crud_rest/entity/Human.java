@@ -16,6 +16,12 @@ import java.util.List;
 @Setter
 @Builder
 @ToString
+@NamedEntityGraph(
+        name = "humanWithCars",
+        attributeNodes = {
+                @NamedAttributeNode("cars")
+        }
+)
 
 public class Human {
 

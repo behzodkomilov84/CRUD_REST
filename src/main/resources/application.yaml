@@ -16,7 +16,9 @@ spring:
     open-in-view: false #Har bir proyektni boshlaganda shuni qo'shish kerak
   liquibase:
     change-log: classpath:db/changelog/master.xml
-
+#  jackson:
+#    deserialization:
+#      accept-float-as-int: false #2-usuli ObjectMapperConfig.java da keltirilgan. POST-Zaprosda int'ni o'rniga float kirgizilsa 400-Bad request qaytaradi.
 logging:
   level:
     root: INFO

@@ -22,7 +22,7 @@ public class HumanService {
     private final HumanMapper humanMapper;
 
     public List<Human> getHumans() {
-        return humanRepository.findAll();
+        return humanRepository.findAllWithCars();
     }
 
     public Optional<Human> getHuman(Long id) {
