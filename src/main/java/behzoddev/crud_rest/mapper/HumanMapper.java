@@ -22,7 +22,10 @@ public interface HumanMapper {
         return human;
     }
 
+    @Mapping(target = "id", ignore = true)
     Human mapHumanPostDtotoHuman(HumanPostDto humanPostDto);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "human", ignore = true)
     Car mapCarPostDtoToCar(CarPostDto carPostDto);
 }

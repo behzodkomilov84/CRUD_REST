@@ -1,0 +1,32 @@
+package behzoddev.crud_rest.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+import org.jspecify.annotations.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+
+@Entity
+@Table(name = "roles")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@ToString
+public class Role implements GrantedAuthority {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String roleName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private UserEntity userEntity;
+
+    @Override
+    public @Nullable String getAuthority() {
+        return roleName;
+    }
+}
